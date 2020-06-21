@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Practice Timer</string>
+    <string-array name = "times">
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>15:00</item>
+    </string-array>
 </resources>

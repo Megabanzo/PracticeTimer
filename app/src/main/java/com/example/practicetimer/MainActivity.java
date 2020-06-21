@@ -8,8 +8,8 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    String s1[];
 
 
     @Override
@@ -18,15 +18,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView)findViewById(R.id.myrecyclerview);
 
+        s1 = getResources().getStringArray(R.array.times);
+
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
+        MyAdapter mAdapter = new MyAdapter(this, s1);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
