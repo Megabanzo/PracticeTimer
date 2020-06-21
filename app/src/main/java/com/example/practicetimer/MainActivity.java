@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
+    private RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter mAdapter;
     String s1[];
 
 
@@ -16,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView)findViewById(R.id.myrecyclerview);
+
+        rec = (RecyclerView)findViewById(R.id.myrecyclerview);
+
 
         s1 = getResources().getStringArray(R.array.times);
 
@@ -25,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         //recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        rec.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        MyAdapter mAdapter = new MyAdapter(this, s1);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new MyAdapter(this, s1);
+        rec.setAdapter(mAdapter);
+
     }
 }

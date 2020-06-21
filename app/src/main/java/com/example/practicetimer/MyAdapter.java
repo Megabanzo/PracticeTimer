@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    String data[];
-    Context c;
+    private String[] data;
+    public Context c;
 
-    public MyAdapter(Context ct, String s[]){
+    public MyAdapter(Context ct, String[] s){
         data = s;
         c = ct;
 
@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.myNumber.setText(position);
+        holder.myNumber.setText(Integer.toString(position + 1));
         holder.myTime.setText(data[position]);
 
 
@@ -42,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView myNumber, myTime;
+        public TextView myNumber, myTime;
 
 
         public MyViewHolder(@NonNull View itemView) {
