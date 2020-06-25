@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setOnEntryClickListener(new MyAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(View view, int position){
-                System.out.println(position);
+                Intent showTimer = new Intent(getApplicationContext(), MainTimer.class);
+                startActivity(showTimer);
             }
 
         });

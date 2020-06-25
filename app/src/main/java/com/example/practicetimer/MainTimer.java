@@ -41,7 +41,7 @@ public class MainTimer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.maintimer);
 
         textView = (TextView)findViewById(R.id.textView);
         start = (Button)findViewById(R.id.button);
