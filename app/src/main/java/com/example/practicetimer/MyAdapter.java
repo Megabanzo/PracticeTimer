@@ -13,6 +13,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private String[] data;
     public Context c;
+    private OnEntryClickListener mOnEntryClickListener;
 
     public MyAdapter(Context ct, String[] s){
         data = s;
@@ -40,15 +41,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return data.length;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView myNumber, myTime;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             myTime = itemView.findViewById(R.id.totalTime);
             myNumber = itemView.findViewById(R.id.tName);
+
         }
+        @Override
+        public void onClick(View v){
+            if (mOnEntryClickListener != null){
+                mOnEntryClickListener.onEntryClick(v, getLayoutPosition());
+            }
+        }
+    }
+
+    public interface OnEntryClickListener {
+        void onEntryClick(View view, int position);
+    }
+
+    public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener){
+        mOnEntryClickListener = onEntryClickListener;
     }
 }

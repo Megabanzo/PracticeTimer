@@ -5,11 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private MyAdapter mAdapter;
     String s1[];
 
 
@@ -32,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(this, s1);
+        mAdapter.setOnEntryClickListener(new MyAdapter.OnEntryClickListener() {
+            @Override
+            public void onEntryClick(View view, int position){
+                System.out.println(position);
+            }
+
+        });
         rec.setAdapter(mAdapter);
 
     }
