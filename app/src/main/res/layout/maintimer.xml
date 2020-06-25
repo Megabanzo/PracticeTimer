@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     tools:context="com.example.practicetimer.MainTimer"
-    android:background="#ECEFF1">
+    android:background="@color/black">
 
     <TextView
         android:text="00:00:00"
@@ -15,7 +15,7 @@
         android:id="@+id/textView"
         android:textSize="50dp"
         android:textStyle="bold"
-        android:textColor="#009688"
+        android:textColor="@color/chosencolor"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
