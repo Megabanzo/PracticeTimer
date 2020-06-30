@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
     private MyAdapter mAdapter;
     String s1[];
+    Button newTimer;
 
 
     @Override
