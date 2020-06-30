@@ -9,10 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
     private MyAdapter mAdapter;
+    ArrayList timers;
     String s1[];
     Button newTimer;
 
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         s1 = getResources().getStringArray(R.array.times);
+        timers = new ArrayList<String>(Arrays.asList(s1));
+        timers.add("foobar");
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         rec.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(this, s1);
+        mAdapter = new MyAdapter(this, timers);
         mAdapter.setOnEntryClickListener(new MyAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(View view, int position){
