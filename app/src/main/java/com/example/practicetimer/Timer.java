@@ -10,5 +10,5 @@ public class Timer {
         H = 0;
         D = 0;
     }
-    
+
 }
