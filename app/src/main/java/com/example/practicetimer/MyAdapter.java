@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private ArrayList<String> data;
+    private ArrayList<Timer> data;
     public Context c;
     private OnEntryClickListener mOnEntryClickListener;
 
-    public MyAdapter(Context ct, ArrayList<String> s){
+    public MyAdapter(Context ct, ArrayList<Timer> s){
         data = s;
         c = ct;
 
@@ -33,8 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myNumber.setText(Integer.toString(position + 1));
-
-        holder.myTime.setText(data.get(position));
+        holder.myTime.setText(Long.toString(data.get(position).MiliTimeTotal));
 
 
     }
