@@ -49,7 +49,8 @@ public class MainTimer extends AppCompatActivity {
         reset = (Button)findViewById(R.id.button3);
         lap = (Button)findViewById(R.id.button4) ;
         listView = (ListView)findViewById(R.id.listview1);
-
+        MillisecondTime = MainActivity.timerss.get(MainActivity.currentIndex).MiliTimeTotal;
+        textView.setText(Long.toString(MillisecondTime));
         handler = new Handler() ;
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));

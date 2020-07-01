@@ -16,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
     private MyAdapter mAdapter;
+    public static int currentIndex;
     ArrayList timers;
     String s1[];
     Button newTimer;
-    ArrayList<Timer> timerss;
+    public static ArrayList<Timer> timerss;
 
 
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         timers.add("foobar");
         for(int i = 10; i > 7; i--) {
             timerss.add(new Timer(i));
-            
+
         }
 
         // use this setting to improve performance if you know that changes
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setOnEntryClickListener(new MyAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(View view, int position){
+                currentIndex = position;
                 Intent showTimer = new Intent(getApplicationContext(), MainTimer.class);
                 startActivity(showTimer);
             }
