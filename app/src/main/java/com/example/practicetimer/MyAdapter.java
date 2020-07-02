@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +17,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private ArrayList<Timer> data;
     public Context c;
     private OnEntryClickListener mOnEntryClickListener;
+    public Button playButton;
 
     public MyAdapter(Context ct, ArrayList<Timer> s){
         data = s;
         c = ct;
+
 
     }
     @NonNull
@@ -46,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView myNumber, myTime;
+        public Button cloneButton, playButton;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -53,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             itemView.setOnClickListener(this);
             myTime = itemView.findViewById(R.id.totalTime);
             myNumber = itemView.findViewById(R.id.tName);
+
 
         }
         @Override

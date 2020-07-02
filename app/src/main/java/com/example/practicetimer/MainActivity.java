@@ -59,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
         });
         rec.setAdapter(mAdapter);
+        newTimer.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                timerss.add(new Timer());
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
+
+
 }
