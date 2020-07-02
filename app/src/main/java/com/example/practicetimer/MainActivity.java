@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rec;
+    public static RecyclerView rec;
     private RecyclerView.LayoutManager layoutManager;
-    private MyAdapter mAdapter;
+    public static MyAdapter mAdapter;
     public static int currentIndex;
     ArrayList timers;
     String s1[];
@@ -31,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         rec = (RecyclerView)findViewById(R.id.myrecyclerview);
         newTimer = findViewById(R.id.newTimerButton);
-        s1 = getResources().getStringArray(R.array.times);
-        timers = new ArrayList<String>(Arrays.asList(s1));
         timerss = new ArrayList<Timer>();
-        timers.add("foobar");
+
         for(int i = 10; i > 7; i--) {
             timerss.add(new Timer(i));
 

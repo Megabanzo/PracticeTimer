@@ -14,23 +14,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Timer {
-    public long MiliTimeTotal;
+    public long MiliTimeTotal, starTime;
+    Handler handler;
+    Boolean isOn;
+
 
 
     public Timer(int t){
         MiliTimeTotal = t;
+        handler = new Handler();
+        isOn = false;
 
     }
     public Timer(){
         MiliTimeTotal = 0;
+        handler = new Handler();
+        isOn = false;
 
     }
-
+    public void startTimer(){
+        starTime = SystemClock.uptimeMillis();
+        if(!isOn) {
+            handler.postDelayed(runnable, 0);
+            isOn = !isOn;
+        }else{
+            handler.removeCallbacks(runnable);
+            isOn = !isOn;
+        }
+    }
 
     public Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            MiliTimeTotal = SystemClock.uptimeMillis() - 1
+            MiliTimeTotal++;
+            handler.postDelayed(this, 0);
+
         }
     };
 

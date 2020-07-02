@@ -36,7 +36,7 @@ public class MainTimer extends AppCompatActivity {
 
     List<String> ListElementsArrayList ;
 
-    ArrayAdapter<String> adapter ;
+    public ArrayAdapter<String> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
