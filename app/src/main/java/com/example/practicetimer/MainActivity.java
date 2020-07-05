@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setOnEntryClickListener(new MyAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(View view, int position){
-                currentIndex = position;
+                currentIndex = position; // used to fetch value from timerss to get timer value
                 Intent showTimer = new Intent(getApplicationContext(), MainTimer.class);
                 startActivity(showTimer);
             }

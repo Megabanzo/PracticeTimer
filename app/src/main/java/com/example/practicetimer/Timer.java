@@ -57,17 +57,6 @@ public class Timer {
         }
     };
 
-    public Runnable createRunnable(final TextView t){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                MiliTimeTotal++;
-                t.setText(Long.toString(MiliTimeTotal));
-                handler.postDelayed(this, 0);
-            }
-        };
-        return runnable;
-    }
 
     public void setTextView(final TextView t){
         tView = t;

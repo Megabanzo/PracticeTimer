@@ -54,7 +54,9 @@ public class MainTimer extends AppCompatActivity {
         handler = new Handler() ;
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
-
+        if(MainActivity.timerss.get(MainActivity.currentIndex).isOn){
+            //this is where to pick up fool!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        }
         adapter = new ArrayAdapter<String>(MainTimer.this,
                 android.R.layout.simple_list_item_1,
                 ListElementsArrayList
