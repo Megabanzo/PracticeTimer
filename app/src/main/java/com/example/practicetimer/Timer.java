@@ -17,6 +17,7 @@ public class Timer {
     public long MiliTimeTotal, starTime;
     Handler handler;
     Boolean isOn;
+    TextView tView;
 
 
 
@@ -32,8 +33,12 @@ public class Timer {
         isOn = false;
 
     }
-    public void startTimer(){
+    public void startTimer(final TextView t){
         starTime = SystemClock.uptimeMillis();
+//        Runnable runnable;
+//        if (runnable == null){
+//            runnable = createRunnable(t);
+//        }
         if(!isOn) {
             handler.postDelayed(runnable, 0);
             isOn = !isOn;
@@ -43,14 +48,29 @@ public class Timer {
         }
     }
 
-    public Runnable runnable = new Runnable() {
+    Runnable runnable = new Runnable() {
         @Override
         public void run() {
             MiliTimeTotal++;
+            tView.setText(Long.toString(MiliTimeTotal));
             handler.postDelayed(this, 0);
-
         }
     };
 
+    public Runnable createRunnable(final TextView t){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                MiliTimeTotal++;
+                t.setText(Long.toString(MiliTimeTotal));
+                handler.postDelayed(this, 0);
+            }
+        };
+        return runnable;
+    }
+
+    public void setTextView(final TextView t){
+        tView = t;
+    }
 
 }

@@ -37,11 +37,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.myNumber.setText(Integer.toString(position + 1));
         holder.myTime.setText(Long.toString(data.get(position).MiliTimeTotal));
+        MainActivity.timerss.get(position).setTextView(holder.myTime);
         holder.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder.lastClicked = position;
-                MainActivity.timerss.get(position).startTimer();
+
+                MainActivity.timerss.get(position).startTimer(holder.myTime);
 
             }
         });
