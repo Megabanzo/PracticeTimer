@@ -1,7 +1,7 @@
 package com.example.practicetimer;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +31,7 @@ public class MainTimer extends AppCompatActivity {
     int Seconds, Minutes, MilliSeconds ;
 
     ListView listView ;
+    Timer timer;
 
     String[] ListElements = new String[] {  };
 
@@ -38,24 +39,26 @@ public class MainTimer extends AppCompatActivity {
 
     public ArrayAdapter<String> adapter ;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintimer);
-
+        timer = MainActivity.timerss.get(MainActivity.currentIndex);
         textView = (TextView)findViewById(R.id.textView);
-        start = (Button)findViewById(R.id.button);
-        pause = (Button)findViewById(R.id.button2);
-        reset = (Button)findViewById(R.id.button3);
-        lap = (Button)findViewById(R.id.button4) ;
+        start = (Button)findViewById(R.id.startButton);
+        reset = (Button)findViewById(R.id.resetButton);
+        lap = (Button)findViewById(R.id.lapButton);
+        pause = (Button)findViewById(R.id.pauseButton) ;
         listView = (ListView)findViewById(R.id.listview1);
-        MillisecondTime = MainActivity.timerss.get(MainActivity.currentIndex).MiliTimeTotal;
+
+        MillisecondTime = timer.MiliTimeTotal;
         textView.setText(Long.toString(MillisecondTime));
         handler = new Handler() ;
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
-        if(MainActivity.timerss.get(MainActivity.currentIndex).isOn){
-            //this is where to pick up fool!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if(timer.isOn){
+            handler.postDelayed(updateTimierview, 0);
         }
         adapter = new ArrayAdapter<String>(MainTimer.this,
                 android.R.layout.simple_list_item_1,
@@ -68,8 +71,9 @@ public class MainTimer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                StartTime = SystemClock.uptimeMillis();
-                handler.postDelayed(runnable, 0);
+                //StartTime = SystemClock.uptimeMillis();
+                timer.startTimer();
+                handler.postDelayed(updateTimierview, 0);
 
                 reset.setEnabled(false);
 
@@ -82,7 +86,7 @@ public class MainTimer extends AppCompatActivity {
 
                 TimeBuff += MillisecondTime;
 
-                handler.removeCallbacks(runnable);
+                handler.removeCallbacks(updateTimierview);
 
                 reset.setEnabled(true);
 
@@ -122,26 +126,27 @@ public class MainTimer extends AppCompatActivity {
 
     }
 
-    public Runnable runnable = new Runnable() {
+    public Runnable updateTimierview = new Runnable() {
 
         public void run() {
 
-            MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+//            MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+//
+//            UpdateTime = TimeBuff + MillisecondTime;
+//
+//            Seconds = (int) (UpdateTime / 1000);
+//
+//            Minutes = Seconds / 60;
+//
+//            Seconds = Seconds % 60;
+//
+//            MilliSeconds = (int) (UpdateTime % 1000);
 
-            UpdateTime = TimeBuff + MillisecondTime;
-
-            Seconds = (int) (UpdateTime / 1000);
-
-            Minutes = Seconds / 60;
-
-            Seconds = Seconds % 60;
-
-            MilliSeconds = (int) (UpdateTime % 1000);
-
-            textView.setText("" + Minutes + ":"
-                    + String.format("%02d", Seconds) + ":"
-                    + String.format("%03d", MilliSeconds));
-
+//            textView.setText("" + Minutes + ":"
+//                    + String.format("%02d", Seconds) + ":"
+//                    + String.format("%03d", MilliSeconds));
+            MillisecondTime = timer.MiliTimeTotal;
+            textView.setText(Long.toString(MillisecondTime));
             handler.postDelayed(this, 0);
         }
 

@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View view) {
                 holder.lastClicked = position;
 
-                MainActivity.timerss.get(position).startTimer(holder.myTime);
+                MainActivity.timerss.get(position).startTimer();
 
             }
         });
