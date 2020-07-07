@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Timer {
-    public long MiliTimeTotal, starTime;
+    public long MiliTimeTotal, starTime, buffer, upTime;
     Handler handler;
     Boolean isOn;
     TextView tView;
+    int Seconds, Minutes, MilliSeconds,  Hours, Days;
+    String stringTime;
 
 
 
@@ -25,12 +27,14 @@ public class Timer {
         MiliTimeTotal = t;
         handler = new Handler();
         isOn = false;
+        upTime = 0;
 
     }
     public Timer(){
         MiliTimeTotal = 0;
         handler = new Handler();
         isOn = false;
+        upTime = 0;
 
     }
     public void startTimer(){
@@ -38,19 +42,39 @@ public class Timer {
 
         if(!isOn) {
             handler.postDelayed(runnable, 0);
-            isOn = !isOn;
         }else{
+            buffer += MiliTimeTotal;
             handler.removeCallbacks(runnable);
-            isOn = !isOn;
         }
+        isOn = !isOn;
     }
 
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            MiliTimeTotal++;
             MiliTimeTotal = SystemClock.uptimeMillis() -  starTime;
-            tView.setText(Long.toString(MiliTimeTotal));
+
+            upTime = buffer + MiliTimeTotal;
+
+            Seconds = (int) (upTime/1000);
+
+            Minutes = Seconds / 60;
+
+            Hours = Minutes / 60;
+
+            Minutes = Minutes % 60;
+
+            Seconds = Seconds % 60;
+
+            MilliSeconds = (int) (upTime %1000);
+
+            stringTime = ("" + Days
+                    + String.format("%02d", Hours) + ":"
+                    + String.format("%02d", Minutes) + ":"
+                    + String.format("%02d", Seconds) + ":"
+                    + String.format("%03d", MilliSeconds));
+
+            tView.setText(stringTime);
             handler.postDelayed(this, 0);
         }
     };
