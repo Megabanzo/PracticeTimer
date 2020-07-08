@@ -18,9 +18,7 @@ public class Timer {
     Handler handler;
     Boolean isOn;
     TextView tView;
-
-
-
+    
     public Timer(int t){
         MiliTimeTotal = t;
         handler = new Handler();
@@ -38,11 +36,10 @@ public class Timer {
 
         if(!isOn) {
             handler.postDelayed(runnable, 0);
-            isOn = !isOn;
         }else{
             handler.removeCallbacks(runnable);
-            isOn = !isOn;
         }
+        isOn = !isOn;
     }
 
     Runnable runnable = new Runnable() {
