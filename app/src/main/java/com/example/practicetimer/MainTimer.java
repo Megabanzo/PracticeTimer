@@ -33,6 +33,8 @@ public class MainTimer extends AppCompatActivity {
     ListView listView ;
     Timer timer;
 
+    String timerStringTime;
+
     String[] ListElements = new String[] {  };
 
     List<String> ListElementsArrayList ;
@@ -51,9 +53,9 @@ public class MainTimer extends AppCompatActivity {
         lap = (Button)findViewById(R.id.lapButton);
         pause = (Button)findViewById(R.id.pauseButton) ;
         listView = (ListView)findViewById(R.id.listview1);
-
+        timerStringTime = timer.stringTime;
         MillisecondTime = timer.MiliTimeTotal;
-        textView.setText(Long.toString(MillisecondTime));
+        textView.setText(timerStringTime);
         handler = new Handler() ;
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
@@ -71,9 +73,13 @@ public class MainTimer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //StartTime = SystemClock.uptimeMillis();
+                if (!timer.isOn) {
+
+                    handler.postDelayed(updateTimierview, 0);
+                }else{
+                    handler.removeCallbacks(updateTimierview);
+                }
                 timer.startTimer();
-                handler.postDelayed(updateTimierview, 0);
 
                 reset.setEnabled(false);
 
@@ -145,8 +151,8 @@ public class MainTimer extends AppCompatActivity {
 //            textView.setText("" + Minutes + ":"
 //                    + String.format("%02d", Seconds) + ":"
 //                    + String.format("%03d", MilliSeconds));
-            MillisecondTime = timer.MiliTimeTotal;
-            textView.setText(Long.toString(MillisecondTime));
+
+            textView.setText(timer.stringTime);
             handler.postDelayed(this, 0);
         }
 
